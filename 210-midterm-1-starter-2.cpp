@@ -132,7 +132,7 @@ public:
     }
     // add node to front of list
     void push_front(int v) {
-        Node* newNode = new Node(v); /
+        Node* newNode = new Node(v); 
         if (!head) 
             head = tail = newNode; // empty list - both head and tail pointer
         else { 
@@ -210,14 +210,45 @@ public:
         }
         cout << endl;
     }
+
+    // print every other node in the list (start w/ first)
+    void every_other_element() {
+        Node* current = head; // start at head
+        if (!current){
+            cout << "List is empty." <, endl; // if list empty
+        }
+
+        while (current){ // walk through list and print every other node
+            cout << current->data << " "; //print current node
+        }
+
+        if (current->next)
+            current = current->next->next; // move ahead by two ndoe to skip next
+        else    
+            break; // no next node to jump to
+    
+    }
+
+
+
+
+
 };
 // main for testing
 int main() {
-    cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
+    DoublyLinkedList dl;
+    dl.push_back(10);
+    dl.push_back(20);
+    dl.push_back(30);
+    dl.push_back(40);
+    dl.push_back(50);
+    dl.push_back(60);  
 
-    
+    cout << "Full list: ";
+    dl.print()
+
+    cout << "Every other element: ";
+    dl.every_other_element();
     return 0;
+
 }
- int main(
-    cout << "not letting me commit unless i add something??"
- ) 
