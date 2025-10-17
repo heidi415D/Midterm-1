@@ -3,36 +3,38 @@
 #include <iostream>
 using namespace std;
 
+// these are constants that might be used somewhere else in the program
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
-
+// DoublyLinkedList class that holds ndoes linked both prev and next
 class DoublyLinkedList {
 private: 
     // A node is like a box in our linked list structure
-    // each node hold an int and a pointer to the next node
+    // each node holds an int and two pointers, prev and next
     struct Node {
-        int data; // this is the actual number stored in the box
-        Node* prev;
-        Node* next;
+        int data; // this is the actual number stored in this node
+        Node* prev; // pointer to the previous node in the list
+        Node* next; // pointer to the next node in the list
+        // this is the node constructor, initialize data and pointer vslues
         Node(int val, Node* p = nullptr, Node* n = nullptr) {
-            data = val; 
-            prev = p;
-            next = n;
+            data = val; // store the provided value in this node
+            prev = p; // set the previous pointer - the default is null here and below
+            next = n; // set the next pointer
         }
     };
 
-    Node* head;
-    Node* tail;
+    Node* head; // pointer to the first node
+    Node* tail; // pointer to the last node
 
-public:
-    DoublyLinkedList() { head = nullptr; tail = nullptr; }
+public: 
+    DoublyLinkedList() { head = nullptr; tail = nullptr; } // create and empty listwith both head & tail = nullptr
 
-    void insert_after(int value, int position) {
-        if (position < 0) {
-            cout << "Position must be >= 0." << endl;
-            return;
+    void insert_after(int value, int position) { // function to insert a new node after a given position in the list
+        if (position < 0) { // check if the position is valid aka non-negative
+            cout << "Position must be >= 0." << endl; // print error message
+            return; // exit the function early
         }
 
-        Node* newNode = new Node(value);
+        Node* newNode = new Node(value); 
         if (!head) {
             head = tail = newNode;
             return;
