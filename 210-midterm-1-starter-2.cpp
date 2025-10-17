@@ -151,31 +151,32 @@ public:
 
         Node * temp = head;
 
-        if (head->next) {
-            head = head->next;
-            head->prev = nullptr;
+        if (head->next) { // if there is more than one node
+            head = head->next; // move head forward
+            head->prev = nullptr; // remove back link
         }
         else
-            head = tail = nullptr;
-        delete temp;
+            head = tail = nullptr; // if only one node list is empty
+        delete temp; // free removed node
     }
     // remove last node
     void pop_back() {
-        if (!tail) {
+        if (!tail) { 
             cout << "List is empty." << endl;
             return;
         }
         Node * temp = tail;
 
-        if (tail->prev) {
-            tail = tail->prev;
-            tail->next = nullptr;
+        if (tail->prev) { // if more than one node
+            tail = tail->prev; // move tail backward
+            tail->next = nullptr; // cut connection to old node (not sure about this one)
         }
         else
-            head = tail = nullptr;
-        delete temp;
+            head = tail = nullptr; // list becomes empty
+        delete temp; // free memory
     }
-
+    // this is the destructor - called automatically when object goes out of scope
+    // deleters every node to abvoid memory leak
     ~DoublyLinkedList() {
         while (head) {
             Node* temp = head;
