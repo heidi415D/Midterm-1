@@ -1,12 +1,16 @@
+// Heidi Pico | Midterm 1
+
 #include <iostream>
 using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
 
 class DoublyLinkedList {
-private:
+private: 
+    // A node is like a box in our linked list structure
+    // each node hold an int and a pointer to the next node
     struct Node {
-        int data;
+        int data; // this is the actual number stored in the box
         Node* prev;
         Node* next;
         Node(int val, Node* p = nullptr, Node* n = nullptr) {
