@@ -34,33 +34,34 @@ public:
             return; // exit the function early
         }
 
-        Node* newNode = new Node(value); 
-        if (!head) {
-            head = tail = newNode;
+        Node* newNode = new Node(value); // dynamically allocate a new node w given value
+       // if list empty, this becomes only node
+        if (!head) { 
+            head = tail = newNode; // 
             return;
         }
-
-        Node* temp = head;
-        for (int i = 0; i < position && temp; ++i)
+        //otherwise find the node at the wanted position
+        Node* temp = head; 
+        for (int i = 0; i < position && temp; ++i)  // move temp pointer forward until position reached
             temp = temp->next;
-
+        // this is for if we went past the end aka position does not exist 
         if (!temp) {
             cout << "Position exceeds list size. Node not inserted.\n";
-            delete newNode;
+            delete newNode; // this is to avoid memory leak
             return;
         }
-
-        newNode->next = temp->next;
-        newNode->prev = temp;
-        if (temp->next)
-            temp->next->prev = newNode;
-        else
-            tail = newNode;
-        temp->next = newNode;
+        //link newnode correctley bewteen nodes
+        newNode->next = temp->next; // connect new nodes next to temps next
+        newNode->prev = temp; // connect new nodes prev to temp
+        if (temp->next) // if temp is not the tail, fix the next nodes prev
+            temp->next->prev = newNode; 
+            else // if we inserted at the new, newnode bceomes new tail
+                tail = newNode; 
+        temp->next = newNode; // link temps next to newnode
     }
-
+    // delete node 
     void delete_val(int value) {
-        if (!head) return;
+        if (!head) return; // 
 
         Node* temp = head;
         
